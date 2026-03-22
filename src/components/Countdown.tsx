@@ -32,10 +32,10 @@ function calculateTimeLeft(target: string): TimeLeft {
 function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="font-[family-name:var(--font-title)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-foreground tabular-nums">
+      <span className="font-[family-name:var(--font-title)] text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-light text-foreground tabular-nums">
         {String(value).padStart(2, "0")}
       </span>
-      <span className="text-muted tracking-[0.3em] uppercase text-xs mt-3 font-[family-name:var(--font-caps)]">
+      <span className="text-muted tracking-[0.2em] sm:tracking-[0.3em] uppercase text-[10px] sm:text-xs mt-2 sm:mt-3 font-[family-name:var(--font-caps)]">
         {label}
       </span>
     </div>
@@ -74,17 +74,17 @@ export default function Countdown({ targetDate }: CountdownProps) {
             Cuenta Regresiva
           </p>
 
-          <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-16">
+          <div className="flex items-center justify-center gap-3 sm:gap-6 md:gap-10 lg:gap-16">
             <TimeUnit value={timeLeft.days} label="Días" />
-            <span className="font-[family-name:var(--font-title)] text-3xl md:text-4xl text-accent-light self-start mt-2">
+            <span className="font-[family-name:var(--font-title)] text-2xl sm:text-3xl md:text-4xl text-accent-light self-start mt-1 sm:mt-2">
               :
             </span>
             <TimeUnit value={timeLeft.hours} label="Horas" />
-            <span className="font-[family-name:var(--font-title)] text-3xl md:text-4xl text-accent-light self-start mt-2">
+            <span className="font-[family-name:var(--font-title)] text-2xl sm:text-3xl md:text-4xl text-accent-light self-start mt-1 sm:mt-2">
               :
             </span>
             <TimeUnit value={timeLeft.minutes} label="Min" />
-            <span className="font-[family-name:var(--font-title)] text-3xl md:text-4xl text-accent-light self-start mt-2">
+            <span className="font-[family-name:var(--font-title)] text-2xl sm:text-3xl md:text-4xl text-accent-light self-start mt-1 sm:mt-2">
               :
             </span>
             <TimeUnit value={timeLeft.seconds} label="Seg" />

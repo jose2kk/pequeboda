@@ -37,20 +37,28 @@ export default function Hero({
     return () => clearInterval(timer);
   }, [nextImage]);
 
+  /*
+   * Image width = height * 3/4 (aspect ratio).
+   * We use a CSS custom property --img-h set per breakpoint via the class,
+   * but since Tailwind can't do calc with vh in arbitrary padding easily
+   * across breakpoints, we use a simpler approach:
+   * fixed vw-based image width on mobile, vh-based on desktop.
+   */
+
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-between bg-background overflow-hidden pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 md:pb-12">
+    <section className="relative h-[100svh] w-full flex flex-col items-center justify-between bg-background overflow-hidden pt-20 sm:pt-24 md:pt-32 pb-6 sm:pb-8 md:pb-12">
       {/* Zone 1: Names + Image */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
-        {/* Title row — full viewport width, no padding, image pinned to center */}
+        {/* Title row — image always centered on screen */}
         <div className="relative w-full flex items-center justify-center">
-          {/* Image — absolutely positioned at exact viewport center */}
+          {/* Image — centered in flow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-            className="relative h-[28vh] sm:h-[30vh] md:h-[33vh] aspect-[3/4] overflow-hidden z-10"
+            className="relative h-[22vh] sm:h-[26vh] md:h-[33vh] aspect-[3/4] overflow-hidden z-10"
           >
-            <div className="absolute inset-0 border-[5px] border-foreground z-10 pointer-events-none" />
+            <div className="absolute inset-0 border-[3px] sm:border-[4px] md:border-[5px] border-foreground z-10 pointer-events-none" />
 
             <AnimatePresence mode="wait">
               <motion.div
@@ -66,29 +74,29 @@ export default function Hero({
                   alt="Wedding photo"
                   fill
                   className="object-cover"
-                  priority={currentIndex === 0}
-                  sizes="(max-width: 640px) 40vw, (max-width: 1024px) 35vw, 30vw"
+                  loading="eager"
+                  sizes="(max-width: 640px) 30vw, (max-width: 1024px) 25vw, 20vw"
                 />
               </motion.div>
             </AnimatePresence>
           </motion.div>
 
-          {/* Left name — flows from left edge to the image */}
+          {/* Left name */}
           <motion.h1
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="absolute right-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase text-[clamp(4.2rem,15vw,17rem)] leading-[0.9] pr-[calc(50vh*3/4/2+0.15rem)] sm:pr-[calc(50vh*3/4/2+0.2rem)] md:pr-[calc(50vh*3/4/2+0.25rem)] lg:pr-[calc(50vh*3/4/2+0.3rem)]"
+            className="absolute right-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase leading-[0.9] text-[clamp(2.2rem,10vw,17rem)] pr-[calc(22vh*3/4/2+0.15rem)] sm:text-[clamp(3rem,12vw,17rem)] sm:pr-[calc(26vh*3/4/2+0.2rem)] md:text-[clamp(4.2rem,15vw,17rem)] md:pr-[calc(33vh*3/4/2+0.25rem)] lg:pr-[calc(33vh*3/4/2+0.3rem)]"
           >
             {name1}
           </motion.h1>
 
-          {/* Right name — flows from image to right edge */}
+          {/* Right name */}
           <motion.h1
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="absolute left-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase text-[clamp(4.2rem,15vw,17rem)] leading-[0.9] pl-[calc(50vh*3/4/2+0.15rem)] sm:pl-[calc(50vh*3/4/2+0.2rem)] md:pl-[calc(50vh*3/4/2+0.25rem)] lg:pl-[calc(50vh*3/4/2+0.3rem)]"
+            className="absolute left-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase leading-[0.9] text-[clamp(2.2rem,10vw,17rem)] pl-[calc(22vh*3/4/2+0.15rem)] sm:text-[clamp(3rem,12vw,17rem)] sm:pl-[calc(26vh*3/4/2+0.2rem)] md:text-[clamp(4.2rem,15vw,17rem)] md:pl-[calc(33vh*3/4/2+1rem)] lg:pl-[calc(33vh*3/4/2+1.2rem)]"
           >
             {name2}
           </motion.h1>
@@ -100,29 +108,29 @@ export default function Hero({
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-            className="mt-8 sm:mt-10 md:mt-12 text-center"
+            className="mt-5 sm:mt-8 md:mt-12 text-center px-4"
           >
-            <p className="text-foreground tracking-[0.35em] uppercase text-sm sm:text-base md:text-lg font-medium font-[family-name:var(--font-caps)]">
+            <p className="text-foreground tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-[10px] sm:text-xs md:text-lg font-medium font-[family-name:var(--font-caps)]">
               {[date, location].filter(Boolean).join("  |  ")}
             </p>
-            <p className="text-foreground tracking-[0.2em] uppercase text-sm sm:text-base md:text-lg font-medium font-[family-name:var(--font-caps)] mt-3">
+            <p className="text-foreground tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] uppercase text-[10px] sm:text-xs md:text-lg font-medium font-[family-name:var(--font-caps)] mt-1.5 sm:mt-2 md:mt-3">
               ¡Nos Casamos!
             </p>
           </motion.div>
         )}
       </div>
 
-      {/* Zone 3: Initials (Tangerine, black) */}
+      {/* Zone 3: Initials */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2, duration: 1 }}
-        className="flex flex-col items-center gap-4"
+        className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4"
       >
-        <p className="font-[family-name:var(--font-script)] text-foreground text-5xl sm:text-6xl md:text-7xl font-light">
+        <p className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light">
           {name1[0]} & {name2[0]}
         </p>
-        <p className="text-foreground tracking-[0.3em] uppercase text-xs font-medium font-[family-name:var(--font-caps)]">
+        <p className="text-foreground tracking-[0.3em] uppercase text-[9px] sm:text-[10px] md:text-xs font-medium font-[family-name:var(--font-caps)]">
           Est. 2018
         </p>
         <motion.div
@@ -130,11 +138,11 @@ export default function Hero({
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
           <svg
-            width="14"
-            height="20"
+            width="12"
+            height="18"
             viewBox="0 0 16 24"
             fill="none"
-            className="text-muted/50"
+            className="text-muted/50 sm:w-[14px] sm:h-[20px]"
           >
             <path
               d="M7.29 23.71a1 1 0 001.42 0l6.36-6.36a1 1 0 00-1.42-1.42L8 21.59l-5.66-5.66a1 1 0 00-1.42 1.42l6.37 6.36zM7 0v23.3h2V0H7z"

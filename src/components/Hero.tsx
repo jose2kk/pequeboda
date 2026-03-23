@@ -54,7 +54,7 @@ export default function Hero({
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-          className="flex items-baseline justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8"
+          className="flex items-baseline justify-center gap-1.5 sm:gap-2 md:gap-3 mb-6 sm:mb-6 md:mb-8"
         >
           <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-base sm:text-lg md:text-2xl lg:text-3xl font-medium">
             Save
@@ -126,7 +126,7 @@ export default function Hero({
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-            className="mt-5 sm:mt-8 md:mt-12 text-center px-4"
+            className="mt-10 sm:mt-10 md:mt-12 text-center px-4"
           >
             <p className="text-foreground tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-xs sm:text-sm md:text-lg font-medium font-[family-name:var(--font-caps)]">
               {[date, location].filter(Boolean).join("  |  ")}

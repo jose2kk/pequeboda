@@ -145,7 +145,7 @@ export default function Hero({
         transition={{ delay: 1.2, duration: 1 }}
         className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4"
       >
-        <p className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-light">
+        <p className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-3xl lg:text-4xl font-light">
           {name1[0]} & {name2[0]}
         </p>
         <p className="text-foreground tracking-[0.3em] uppercase text-[9px] sm:text-[10px] md:text-xs font-medium font-[family-name:var(--font-caps)]">

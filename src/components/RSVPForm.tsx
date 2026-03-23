@@ -362,7 +362,7 @@ export default function RSVPForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          groupLabel: selectedGroup?.label,
+          groupLabel: selectedGroup?.members.map((m) => m.name).join(", "),
           guests: selectedGuests.map((g) => g.name),
           plusOnes: plusOneNames,
           contactName: contactName.trim(),
@@ -448,7 +448,7 @@ export default function RSVPForm() {
                       </span>
                       {group.members.length > 1 && (
                         <span className="text-muted text-xs font-[family-name:var(--font-caps)] tracking-[0.1em] mt-0.5 block">
-                          {group.label}
+                          Grupo con {group.members.filter((m) => m.id !== member.id).map((m) => m.name).join(", ")}
                         </span>
                       )}
                     </button>
@@ -484,7 +484,7 @@ export default function RSVPForm() {
             {isFamily ? "Tu grupo" : "Tu invitación"}
           </p>
           <p className="font-[family-name:var(--font-body)] text-foreground text-base sm:text-lg mt-1">
-            {selectedGroup.label}
+            {selectedGroup.members.map((m) => m.name).join(", ")}
           </p>
         </div>
         <button

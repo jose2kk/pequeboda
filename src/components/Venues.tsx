@@ -60,7 +60,7 @@ export default function Venues() {
           <VenueBlock
             heading="La Recepción"
             venue="Hotel Charleston Santa Teresa"
-            time="7:00 PM"
+            time="6:00 PM"
 
           />
         </div>

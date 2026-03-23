@@ -10,14 +10,14 @@ const PINTEREST_BOARD_URL =
 
 const dressCodeGuidance = [
   {
-    title: "Ellas",
+    title: "Mujeres",
     description:
-      "Vestido largo o midi en tonos neutros, pasteles o tierra. Se sugiere evitar el blanco, reservado para la novia.",
+      "Vestido largo. Evitar el blanco, reservado para la novia.",
   },
   {
-    title: "Ellos",
+    title: "Hombres",
     description:
-      "Traje formal en tonos oscuros o neutros. Corbata o corbatín opcional. Zapatos de vestir.",
+      "Traje formal/tropical.",
   },
 ];
 
@@ -61,8 +61,7 @@ export default function DressCodePage() {
             className="font-[family-name:var(--font-body)] text-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed"
           >
             Nuestra celebración será de etiqueta formal. A continuación
-            encontrarás algunas sugerencias e inspiración para lucir
-            espectacular.
+            encontrarás algunas sugerencias e inspiración.
           </motion.p>
         </div>
       </section>
@@ -124,10 +123,6 @@ export default function DressCodePage() {
           >
             <p className="font-[family-name:var(--font-title)] text-foreground text-2xl sm:text-3xl md:text-4xl font-light tracking-wide mb-3">
               Tablero de Ideas
-            </p>
-            <p className="font-[family-name:var(--font-body)] text-muted text-sm sm:text-[15px] max-w-md mx-auto">
-              Hemos curado una selección de looks y estilos que van con la
-              vibra de nuestra boda.
             </p>
           </motion.div>
 

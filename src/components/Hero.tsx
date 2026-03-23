@@ -56,13 +56,13 @@ export default function Hero({
           transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
           className="flex items-baseline justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8"
         >
-          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-sm sm:text-base md:text-2xl lg:text-3xl font-medium">
+          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-base sm:text-lg md:text-2xl lg:text-3xl font-medium">
             Save
           </span>
-          <span className="font-[family-name:var(--font-script)] text-foreground text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light relative top-[0.1em] sm:top-[0.12em]">
+          <span className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light relative top-[0.1em] sm:top-[0.12em]">
             the
           </span>
-          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-sm sm:text-base md:text-2xl lg:text-3xl font-medium">
+          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-base sm:text-lg md:text-2xl lg:text-3xl font-medium">
             Date
           </span>
         </motion.div>
@@ -128,10 +128,10 @@ export default function Hero({
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             className="mt-5 sm:mt-8 md:mt-12 text-center px-4"
           >
-            <p className="text-foreground tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-[10px] sm:text-xs md:text-lg font-medium font-[family-name:var(--font-caps)]">
+            <p className="text-foreground tracking-[0.15em] sm:tracking-[0.25em] md:tracking-[0.35em] uppercase text-xs sm:text-sm md:text-lg font-medium font-[family-name:var(--font-caps)]">
               {[date, location].filter(Boolean).join("  |  ")}
             </p>
-            <p className="text-foreground tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] uppercase text-[10px] sm:text-xs md:text-lg font-medium font-[family-name:var(--font-caps)] mt-1.5 sm:mt-2 md:mt-3">
+            <p className="text-foreground tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] uppercase text-xs sm:text-sm md:text-lg font-medium font-[family-name:var(--font-caps)] mt-1.5 sm:mt-2 md:mt-3">
               ¡Nos Casamos!
             </p>
           </motion.div>
@@ -145,7 +145,7 @@ export default function Hero({
         transition={{ delay: 1.2, duration: 1 }}
         className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4"
       >
-        <p className="font-[family-name:var(--font-script)] text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light">
+        <p className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-light">
           {name1[0]} & {name2[0]}
         </p>
         <p className="text-foreground tracking-[0.3em] uppercase text-[9px] sm:text-[10px] md:text-xs font-medium font-[family-name:var(--font-caps)]">

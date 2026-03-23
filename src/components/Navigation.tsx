@@ -33,8 +33,9 @@ export default function Navigation({
   }, [menuOpen]);
 
   const navLinks = [
-    { href: "#home", label: "Inicio" },
-    { href: "#save-the-date", label: "La Fecha" },
+    { href: "/#home", label: "Inicio" },
+    { href: "/#save-the-date", label: "La Fecha" },
+    { href: "/rsvp", label: "RSVP" },
   ];
 
   return (

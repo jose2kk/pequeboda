@@ -47,8 +47,26 @@ export default function Hero({
 
   return (
     <section className="relative h-[100svh] w-full flex flex-col items-center justify-between bg-background overflow-hidden pt-20 sm:pt-24 md:pt-32 pb-6 sm:pb-8 md:pb-12">
-      {/* Zone 1: Names + Image */}
+      {/* Zone 1: Save the Date + Names + Image */}
       <div className="flex-1 flex flex-col items-center justify-center w-full">
+        {/* "Save the Date" heading */}
+        <motion.div
+          initial={{ opacity: 0, y: -15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
+          className="flex items-baseline justify-center gap-1.5 sm:gap-2 md:gap-3 mb-4 sm:mb-6 md:mb-8"
+        >
+          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-sm sm:text-base md:text-2xl lg:text-3xl font-medium">
+            Save
+          </span>
+          <span className="font-[family-name:var(--font-script)] text-foreground text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light relative top-[0.1em] sm:top-[0.12em]">
+            the
+          </span>
+          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-sm sm:text-base md:text-2xl lg:text-3xl font-medium">
+            Date
+          </span>
+        </motion.div>
+
         {/* Title row — image always centered on screen */}
         <div className="relative w-full flex items-center justify-center">
           {/* Image — centered in flow */}
@@ -86,7 +104,7 @@ export default function Hero({
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="absolute right-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase leading-[0.9] text-[clamp(2.2rem,10vw,17rem)] pr-[calc(22vh*3/4/2+0.15rem)] sm:text-[clamp(3rem,12vw,17rem)] sm:pr-[calc(26vh*3/4/2+0.2rem)] md:text-[clamp(4.2rem,15vw,17rem)] md:pr-[calc(33vh*3/4/2+0.25rem)] lg:pr-[calc(33vh*3/4/2+0.3rem)]"
+            className="absolute right-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase leading-[0.9] text-[clamp(2.2rem,10vw,17rem)] pr-[calc(22vh*3/4/2+0.5rem)] sm:text-[clamp(3rem,12vw,17rem)] sm:pr-[calc(26vh*3/4/2+0.2rem)] md:text-[clamp(4.2rem,15vw,17rem)] md:pr-[calc(33vh*3/4/2+0.25rem)] lg:pr-[calc(33vh*3/4/2+0.3rem)]"
           >
             {name1}
           </motion.h1>
@@ -96,7 +114,7 @@ export default function Hero({
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-            className="absolute left-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase leading-[0.9] text-[clamp(2.2rem,10vw,17rem)] pl-[calc(22vh*3/4/2+0.15rem)] sm:text-[clamp(3rem,12vw,17rem)] sm:pl-[calc(26vh*3/4/2+0.2rem)] md:text-[clamp(4.2rem,15vw,17rem)] md:pl-[calc(33vh*3/4/2+1rem)] lg:pl-[calc(33vh*3/4/2+1.2rem)]"
+            className="absolute left-1/2 font-[family-name:var(--font-title)] text-foreground font-normal italic tracking-[0.05em] uppercase leading-[0.9] text-[clamp(2.2rem,10vw,17rem)] pl-[calc(22vh*3/4/2+0.5rem)] sm:text-[clamp(3rem,12vw,17rem)] sm:pl-[calc(26vh*3/4/2+0.2rem)] md:text-[clamp(4.2rem,15vw,17rem)] md:pl-[calc(33vh*3/4/2+1rem)] lg:pl-[calc(33vh*3/4/2+1.2rem)]"
           >
             {name2}
           </motion.h1>
@@ -127,7 +145,7 @@ export default function Hero({
         transition={{ delay: 1.2, duration: 1 }}
         className="flex flex-col items-center gap-2 sm:gap-3 md:gap-4"
       >
-        <p className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-light">
+        <p className="font-[family-name:var(--font-script)] text-foreground text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light">
           {name1[0]} & {name2[0]}
         </p>
         <p className="text-foreground tracking-[0.3em] uppercase text-[9px] sm:text-[10px] md:text-xs font-medium font-[family-name:var(--font-caps)]">

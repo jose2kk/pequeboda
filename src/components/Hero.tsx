@@ -54,15 +54,15 @@ export default function Hero({
           initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-          className="flex items-baseline justify-center gap-1.5 sm:gap-2 md:gap-3 mb-6 sm:mb-6 md:mb-8"
+          className="flex items-baseline justify-center gap-1.5 sm:gap-2 md:gap-3 mb-8 sm:mb-6 md:mb-8"
         >
-          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-base sm:text-lg md:text-2xl lg:text-3xl font-medium">
+          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-xl sm:text-lg md:text-2xl lg:text-3xl font-medium">
             Save
           </span>
-          <span className="font-[family-name:var(--font-script)] text-foreground text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light relative top-[0.1em] sm:top-[0.12em]">
+          <span className="font-[family-name:var(--font-script)] text-foreground text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-light relative top-[0.1em] sm:top-[0.12em]">
             the
           </span>
-          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-base sm:text-lg md:text-2xl lg:text-3xl font-medium">
+          <span className="font-[family-name:var(--font-caps)] text-foreground tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] uppercase text-xl sm:text-lg md:text-2xl lg:text-3xl font-medium">
             Date
           </span>
         </motion.div>

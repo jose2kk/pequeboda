@@ -15,7 +15,8 @@ interface TimeLeft {
 }
 
 function calculateTimeLeft(target: string): TimeLeft {
-  const difference = new Date(target).getTime() - new Date().getTime();
+  // Target is 5:00 PM Colombia time (UTC-5)
+  const difference = new Date(`${target}T17:00:00-05:00`).getTime() - new Date().getTime();
 
   if (difference <= 0) {
     return { days: 0, hours: 0, minutes: 0, seconds: 0 };
@@ -55,14 +56,14 @@ export default function Countdown({ targetDate }: CountdownProps) {
 
   if (!timeLeft) {
     return (
-      <section className="py-24 md:py-32 bg-background">
+      <section className="py-10 sm:py-12 md:py-16 bg-background">
         <div className="max-w-4xl mx-auto px-6 text-center h-32" />
       </section>
     );
   }
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section className="py-10 sm:py-12 md:py-16 bg-background">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

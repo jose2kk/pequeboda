@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import SaveTheDate from "@/components/SaveTheDate";
 import Countdown from "@/components/Countdown";
-
+import Venues from "@/components/Venues";
 import Footer from "@/components/Footer";
 import Navigation from "@/components/Navigation";
 
@@ -51,6 +51,8 @@ export default function Home() {
           location={WEDDING.location}
         />
       </div>
+
+      <Venues />
 
       <Countdown targetDate={WEDDING.date} />
 

@@ -14,7 +14,7 @@ export default function Footer({
   hashtag,
 }: FooterProps) {
   return (
-    <footer className="py-16 md:py-24 bg-dark text-white">
+    <footer className="py-10 sm:py-12 md:py-16 bg-dark text-white">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0 }}

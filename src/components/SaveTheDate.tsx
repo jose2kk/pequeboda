@@ -14,7 +14,7 @@ export default function SaveTheDate({
   location = "Ubicación por confirmar",
 }: SaveTheDateProps) {
   return (
-    <section className="relative py-32 md:py-44 bg-background">
+    <section className="relative py-10 sm:py-12 md:py-16 bg-background">
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

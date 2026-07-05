@@ -1,66 +1,98 @@
+/* eslint-disable @next/next/no-img-element */
 import Hero from "@/components/Hero";
-import SaveTheDate from "@/components/SaveTheDate";
 import Countdown from "@/components/Countdown";
-import Venues from "@/components/Venues";
-import Footer from "@/components/Footer";
-import Navigation from "@/components/Navigation";
-
-// ============================================
-// CUSTOMIZE YOUR WEDDING DETAILS HERE
-// ============================================
-const WEDDING = {
-  // Names displayed on the hero and footer
-  name1: "Ana",
-  name2: "Jose",
-
-  fullName1: "Ana Isabel",
-  fullName2: "José Andrés",
-
-  // Wedding date in ISO format (YYYY-MM-DD)
-  date: "2027-05-08",
-
-  // How the date is displayed in the Save the Date section
-  dateDisplay: "8 de Mayo, 2027",
-
-  // Venue details
-  venue: "Cartagena",
-  location: "Cartagena, Colombia",
-
-  // Wedding hashtag (optional — set to undefined to hide)
-  hashtag: "#PequeBoda",
-};
 
 export default function Home() {
   return (
-    <main>
-      <Navigation name1={WEDDING.name1} name2={WEDDING.name2} />
+    <>
+      <Hero />
 
-      <div id="home">
-        <Hero
-          name1={WEDDING.name1}
-          name2={WEDDING.name2}
-          date={WEDDING.dateDisplay}
-          location={WEDDING.location}
-        />
-      </div>
+      <Countdown />
 
-      <div id="save-the-date">
-        <SaveTheDate
-          date={WEDDING.dateDisplay}
-          venue={WEDDING.venue}
-          location={WEDDING.location}
-        />
-      </div>
+      <section className="section" id="fecha">
+        <div className="wrap fecha__inner reveal">
+          <span className="eyebrow">La Fecha</span>
+          <h2 className="fecha__date">
+            <span className="day">08</span> · Mayo · 2027
+          </h2>
+          <div className="fecha__where">Cartagena, Colombia</div>
 
-      <Venues />
+          <div className="fecha__venues">
+            <article className="fecha__card">
+              <figure className="fecha__art">
+                <img
+                  src="/images/ceremony-art.png"
+                  alt="Ilustración de la Catedral de Santa Catalina de Alejandría"
+                />
+              </figure>
+              <div className="fecha__cardbody">
+                <div className="fecha__type">La Ceremonia</div>
+                <h3 className="fecha__name">
+                  Catedral de Santa Catalina de Alejandría
+                </h3>
+                <div className="fecha__rule"></div>
+                <div className="fecha__time">5:00 PM</div>
+                <div className="fecha__place">Centro Histórico</div>
+                <a
+                  className="fecha__link"
+                  href="https://maps.google.com/?q=Catedral+de+Santa+Catalina+de+Alejandr%C3%ADa+Cartagena"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ver mapa
+                </a>
+              </div>
+            </article>
 
-      <Countdown targetDate={WEDDING.date} />
+            <article className="fecha__card">
+              <figure className="fecha__art">
+                <img
+                  src="/images/reception-art.png"
+                  alt="Ilustración del Hotel Charleston Santa Teresa"
+                />
+              </figure>
+              <div className="fecha__cardbody">
+                <div className="fecha__type">La Recepción</div>
+                <h3 className="fecha__name">Hotel Charleston Santa Teresa</h3>
+                <div className="fecha__rule"></div>
+                <div className="fecha__time">6:00 PM</div>
+                <div className="fecha__place">Plaza de Santa Teresa</div>
+                <a
+                  className="fecha__link"
+                  href="https://maps.google.com/?q=Hotel+Charleston+Santa+Teresa+Cartagena"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ver mapa
+                </a>
+              </div>
+            </article>
+          </div>
 
-      <Footer
-        name1={WEDDING.fullName1}
-        name2={WEDDING.fullName2}
-        hashtag={WEDDING.hashtag}
-      />
-    </main>
+          <div className="fecha__flow">
+            <div className="fecha__flow-item">
+              <div className="fecha__flow-time">5:00</div>
+              <div className="fecha__flow-what">Ceremonia</div>
+            </div>
+            <div className="fecha__flow-item">
+              <div className="fecha__flow-time">6:00</div>
+              <div className="fecha__flow-what">Recepción</div>
+            </div>
+            <div className="fecha__flow-item">
+              <div className="fecha__flow-time">7:00</div>
+              <div className="fecha__flow-what">Cóctel</div>
+            </div>
+            <div className="fecha__flow-item">
+              <div className="fecha__flow-time">8:00</div>
+              <div className="fecha__flow-what">Cena</div>
+            </div>
+            <div className="fecha__flow-item">
+              <div className="fecha__flow-time">10:00</div>
+              <div className="fecha__flow-what">Fiesta</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

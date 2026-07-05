@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local design handoff + private guest data (do not commit)
+design_handoff_peque_boda/
+guests.txt

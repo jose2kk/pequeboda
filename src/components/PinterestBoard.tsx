@@ -1,51 +1,40 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-interface PinterestBoardProps {
-  boardUrl: string;
-}
-
-export default function PinterestBoard({ boardUrl }: PinterestBoardProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-
+export default function PinterestBoard({ boardUrl }: { boardUrl: string }) {
   useEffect(() => {
-    // Load Pinterest SDK
-    const existingScript = document.querySelector(
+    const existing = document.querySelector(
       'script[src="https://assets.pinterest.com/js/pinit.js"]'
     );
-
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.src = "https://assets.pinterest.com/js/pinit.js";
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-    } else {
-      // If script already loaded, re-render widgets
-      if (window.PinUtils) {
-        window.PinUtils.build();
-      }
+    if (existing) {
+      window.PinUtils?.build?.();
+      return;
     }
+    const script = document.createElement("script");
+    script.src = "https://assets.pinterest.com/js/pinit.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
   }, []);
 
   return (
-    <div ref={containerRef} className="flex justify-center">
+    <div className="inspo__board">
       <a
         data-pin-do="embedBoard"
         data-pin-board-width="900"
-        data-pin-scale-height="600"
+        data-pin-scale-height="320"
         data-pin-scale-width="115"
         href={boardUrl}
-      />
+      >
+        Tablero de Pinterest
+      </a>
     </div>
   );
 }
 
 declare global {
   interface Window {
-    PinUtils?: {
-      build: () => void;
-    };
+    PinUtils?: { build: () => void };
   }
 }

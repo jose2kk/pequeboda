@@ -99,16 +99,31 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; }
   align-items: center;
   justify-content: space-between;
   padding: 22px var(--gutter);
-  transition: background .5s var(--ease), padding .5s var(--ease),
-              box-shadow .5s var(--ease);
+  transition: padding .5s var(--ease);
 }
-.nav.scrolled {
+/* The blurred scrolled-bar background lives on a pseudo-element, NOT on .nav
+   itself. A backdrop-filter (or filter/transform) on .nav would make it the
+   containing block for its position:fixed mobile menu — trapping the
+   full-screen overlay inside the thin bar. That's the iOS Safari bug where the
+   menu links show through on scroll and overlap the hero when opened. */
+.nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: transparent;
+  transition: background .5s var(--ease), box-shadow .5s var(--ease);
+}
+.nav.scrolled::before {
   background: rgba(247, 244, 236, 0.88);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 1px 0 var(--line-soft);
+}
+.nav.scrolled {
   padding-top: 14px;
   padding-bottom: 14px;
-  box-shadow: 0 1px 0 var(--line-soft);
 }
 .nav__logo {
   font-family: var(--script);

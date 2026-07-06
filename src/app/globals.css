@@ -332,11 +332,8 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; }
   transition: opacity 1s var(--ease);
 }
 .namerow__photo img.is-on { opacity: 1; }
-.namerow__photo img:nth-child(1) { --z: 1.6;  --ox: .74; --oy: .40; }
-.namerow__photo img:nth-child(2) { --z: 1.4;  --ox: .46; --oy: .27; }
-.namerow__photo img:nth-child(3) { --z: 1.65; --ox: .55; --oy: .47; }
-.namerow__photo img:nth-child(4) { --z: 1.7;  --ox: .46; --oy: .51; }
-.namerow__photo img:nth-child(5) { --z: 1.4;  --ox: .52; --oy: .37; }
+/* per-photo crop values (--z/--ox/--oy) are set inline in Hero.tsx so they
+   stay bound to each image regardless of carousel order */
 
 .hero__meta {
   margin-top: clamp(30px, 6vh, 64px);

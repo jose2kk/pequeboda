@@ -69,28 +69,6 @@ export default function Home() {
             </article>
           </div>
 
-          <div className="fecha__flow">
-            <div className="fecha__flow-item">
-              <div className="fecha__flow-time">5:00</div>
-              <div className="fecha__flow-what">Ceremonia</div>
-            </div>
-            <div className="fecha__flow-item">
-              <div className="fecha__flow-time">6:00</div>
-              <div className="fecha__flow-what">Recepción</div>
-            </div>
-            <div className="fecha__flow-item">
-              <div className="fecha__flow-time">7:00</div>
-              <div className="fecha__flow-what">Cóctel</div>
-            </div>
-            <div className="fecha__flow-item">
-              <div className="fecha__flow-time">8:00</div>
-              <div className="fecha__flow-what">Cena</div>
-            </div>
-            <div className="fecha__flow-item">
-              <div className="fecha__flow-time">10:00</div>
-              <div className="fecha__flow-what">Fiesta</div>
-            </div>
-          </div>
         </div>
       </section>
     </>

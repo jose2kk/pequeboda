@@ -41,6 +41,11 @@ export const INVITE_GROUPS: InviteGroup[] = [
         "id": "g2-2",
         "name": "Victor Vargas",
         "allowPlusOne": false
+      },
+      {
+        "id": "g2-3",
+        "name": "Luis Rene Vargas",
+        "allowPlusOne": false
       }
     ]
   },
@@ -94,12 +99,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g6-1",
-        "name": "Daniel Mann",
+        "name": "Victor Urdaneta",
         "allowPlusOne": false
       },
       {
         "id": "g6-2",
-        "name": "Joanna Morales",
+        "name": "Nathaly Giron",
         "allowPlusOne": false
       }
     ]
@@ -109,22 +114,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g7-1",
-        "name": "Aliana Morales",
+        "name": "Daniel Mann",
         "allowPlusOne": false
       },
       {
         "id": "g7-2",
-        "name": "Sergio Quezada",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g7-3",
-        "name": "Marcos David Guillen",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g7-4",
-        "name": "Jeffrey Jose Quintero",
+        "name": "Joanna Morales",
         "allowPlusOne": false
       }
     ]
@@ -134,12 +129,22 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g8-1",
-        "name": "Joaly Karina Morales",
+        "name": "Aliana Morales",
         "allowPlusOne": false
       },
       {
         "id": "g8-2",
-        "name": "Brad Ray",
+        "name": "Sergio Quezada",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g8-3",
+        "name": "Marcos David Guillen",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g8-4",
+        "name": "Jeffrey Jose Quintero",
         "allowPlusOne": false
       }
     ]
@@ -149,12 +154,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g9-1",
-        "name": "Marian Morales",
+        "name": "Joaly Karina Morales",
         "allowPlusOne": false
       },
       {
         "id": "g9-2",
-        "name": "Esposo de Marian",
+        "name": "Brad Ray",
         "allowPlusOne": false
       }
     ]
@@ -164,12 +169,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g10-1",
-        "name": "Ali Alberto Morales",
+        "name": "Marian Morales",
         "allowPlusOne": false
       },
       {
         "id": "g10-2",
-        "name": "Auristel Araque",
+        "name": "Esposo de Marian",
         "allowPlusOne": false
       }
     ]
@@ -179,12 +184,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g11-1",
-        "name": "Maria Gracia Pina",
+        "name": "Ali Alberto Morales",
         "allowPlusOne": false
       },
       {
         "id": "g11-2",
-        "name": "Andres Paez",
+        "name": "Auristel Araque",
         "allowPlusOne": false
       }
     ]
@@ -194,12 +199,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g12-1",
-        "name": "Luis Jose Pina",
+        "name": "Maria Gracia Pina",
         "allowPlusOne": false
       },
       {
         "id": "g12-2",
-        "name": "Claudia Pina",
+        "name": "Andres Paez",
         "allowPlusOne": false
       }
     ]
@@ -209,12 +214,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g13-1",
-        "name": "Jose Luis Pina",
+        "name": "Luis Jose Pina",
         "allowPlusOne": false
       },
       {
         "id": "g13-2",
-        "name": "Dubi Lugo",
+        "name": "Claudia Pina",
         "allowPlusOne": false
       }
     ]
@@ -224,8 +229,13 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g14-1",
-        "name": "Alan Pina",
-        "allowPlusOne": true
+        "name": "Jose Luis Pina",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g14-2",
+        "name": "Dubi Lugo",
+        "allowPlusOne": false
       }
     ]
   },
@@ -234,8 +244,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g15-1",
-        "name": "Victoria Pina",
-        "allowPlusOne": false
+        "name": "Alan Pina",
+        "allowPlusOne": true
       }
     ]
   },
@@ -244,8 +254,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g16-1",
-        "name": "Francisco Rangel",
-        "allowPlusOne": true
+        "name": "Victoria Pina",
+        "allowPlusOne": false
       }
     ]
   },
@@ -254,13 +264,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g17-1",
-        "name": "Karen Vanesa Gomez",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g17-2",
-        "name": "Douglas Carmona",
-        "allowPlusOne": false
+        "name": "Francisco Rangel",
+        "allowPlusOne": true
       }
     ]
   },
@@ -269,12 +274,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g18-1",
-        "name": "Julio Avila",
+        "name": "Karen Vanesa Gomez",
         "allowPlusOne": false
       },
       {
         "id": "g18-2",
-        "name": "Daniela Esis",
+        "name": "Douglas Carmona",
         "allowPlusOne": false
       }
     ]
@@ -284,12 +289,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g19-1",
-        "name": "Maria Laura Castro",
+        "name": "Julio Avila",
         "allowPlusOne": false
       },
       {
         "id": "g19-2",
-        "name": "Alejandro Semprun",
+        "name": "Daniela Esis",
         "allowPlusOne": false
       }
     ]
@@ -299,12 +304,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g20-1",
-        "name": "Cristina Colmenares",
+        "name": "Maria Laura Castro",
         "allowPlusOne": false
       },
       {
         "id": "g20-2",
-        "name": "Juan Jose Hoyos",
+        "name": "Alejandro Semprun",
         "allowPlusOne": false
       }
     ]
@@ -314,12 +319,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g21-1",
-        "name": "Andres Aguilar",
+        "name": "Cristina Colmenares",
         "allowPlusOne": false
       },
       {
         "id": "g21-2",
-        "name": "Nando Aguilar",
+        "name": "Juan Jose Hoyos",
         "allowPlusOne": false
       }
     ]
@@ -329,7 +334,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g22-1",
-        "name": "Andrea Rivas",
+        "name": "Andres Aguilar",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g22-2",
+        "name": "Nando Aguilar",
         "allowPlusOne": false
       }
     ]
@@ -339,7 +349,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g23-1",
-        "name": "Alexandra Pina",
+        "name": "Andrea Rivas",
         "allowPlusOne": false
       }
     ]
@@ -349,12 +359,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g24-1",
-        "name": "Maria Anez",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g24-2",
-        "name": "Enio Paez",
+        "name": "Alexandra Pina",
         "allowPlusOne": false
       }
     ]
@@ -364,12 +369,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g25-1",
-        "name": "Mileyda Silva",
+        "name": "Maria Anez",
         "allowPlusOne": false
       },
       {
         "id": "g25-2",
-        "name": "Zorellys Silva",
+        "name": "Enio Paez",
         "allowPlusOne": false
       }
     ]
@@ -379,17 +384,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g26-1",
-        "name": "Ramon Castro",
+        "name": "Mileyda Silva",
         "allowPlusOne": false
       },
       {
         "id": "g26-2",
-        "name": "Carolina Villasmil",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g26-3",
-        "name": "Vinicio Castro",
+        "name": "Zorellys Silva",
         "allowPlusOne": false
       }
     ]
@@ -399,22 +399,17 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g27-1",
-        "name": "Jose Luis Velasquez",
+        "name": "Ramon Castro",
         "allowPlusOne": false
       },
       {
         "id": "g27-2",
-        "name": "Milagros Castillo",
+        "name": "Carolina Villasmil",
         "allowPlusOne": false
       },
       {
         "id": "g27-3",
-        "name": "Alejandra Velasquez",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g27-4",
-        "name": "Jose Velasquez Jr.",
+        "name": "Vinicio Castro",
         "allowPlusOne": false
       }
     ]
@@ -424,7 +419,22 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g28-1",
-        "name": "Enmanuel Santana",
+        "name": "Jose Luis Velasquez",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g28-2",
+        "name": "Milagros Castillo",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g28-3",
+        "name": "Alejandra Velasquez",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g28-4",
+        "name": "Jose Alejandro Velasquez",
         "allowPlusOne": false
       }
     ]
@@ -434,7 +444,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g29-1",
-        "name": "Angelly Escruceria",
+        "name": "Enmanuel Santana",
         "allowPlusOne": false
       }
     ]
@@ -444,7 +454,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g30-1",
-        "name": "Manuela Gonzalez",
+        "name": "Angelly Escruceria",
         "allowPlusOne": false
       }
     ]
@@ -454,7 +464,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g31-1",
-        "name": "Andrea Pena",
+        "name": "Manuela Gonzalez",
         "allowPlusOne": false
       }
     ]
@@ -464,12 +474,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g32-1",
-        "name": "Elizabeth Mann",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g32-2",
-        "name": "Gustavo Joves",
+        "name": "Andrea Pena",
         "allowPlusOne": false
       }
     ]
@@ -479,12 +484,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g33-1",
-        "name": "Isamar Prieto",
+        "name": "Elizabeth Mann",
         "allowPlusOne": false
       },
       {
         "id": "g33-2",
-        "name": "Pablo Guastaferro",
+        "name": "Gustavo Joves",
         "allowPlusOne": false
       }
     ]
@@ -494,12 +499,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g34-1",
-        "name": "Jorge Romero",
+        "name": "Isamar Prieto",
         "allowPlusOne": false
       },
       {
         "id": "g34-2",
-        "name": "Jani Mantilla",
+        "name": "Pablo Guastaferro",
         "allowPlusOne": false
       }
     ]
@@ -509,7 +514,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g35-1",
-        "name": "Isabella Soto",
+        "name": "Jorge Romero",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g35-2",
+        "name": "Jani Mantilla",
         "allowPlusOne": false
       }
     ]
@@ -519,8 +529,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g36-1",
-        "name": "Alejandra Rios",
-        "allowPlusOne": false
+        "name": "Isabella Soto",
+        "allowPlusOne": true
       }
     ]
   },
@@ -529,7 +539,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g37-1",
-        "name": "Valentina Barbero",
+        "name": "Alejandra Rios",
         "allowPlusOne": false
       }
     ]
@@ -539,13 +549,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g38-1",
-        "name": "Gabriela Fernandez",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g38-2",
-        "name": "Juan Goncalves",
-        "allowPlusOne": false
+        "name": "Valentina Barbero",
+        "allowPlusOne": true
       }
     ]
   },
@@ -554,12 +559,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g39-1",
-        "name": "Endrick Isturrieta",
+        "name": "Gabriela Fernandez",
         "allowPlusOne": false
       },
       {
         "id": "g39-2",
-        "name": "Connie",
+        "name": "Juan Goncalves",
         "allowPlusOne": false
       }
     ]
@@ -569,12 +574,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g40-1",
-        "name": "Jorge Bracho",
+        "name": "Endrick Isturrieta",
         "allowPlusOne": false
       },
       {
         "id": "g40-2",
-        "name": "Daniela",
+        "name": "Connie",
         "allowPlusOne": false
       }
     ]
@@ -584,7 +589,12 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g41-1",
-        "name": "Ronny Chourio",
+        "name": "Jorge Bracho",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g41-2",
+        "name": "Daniela",
         "allowPlusOne": false
       }
     ]
@@ -594,7 +604,7 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g42-1",
-        "name": "Giselle Vega",
+        "name": "Ronny Chourio",
         "allowPlusOne": false
       }
     ]
@@ -604,8 +614,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g43-1",
-        "name": "Hernan Payan",
-        "allowPlusOne": true
+        "name": "Giselle Vega",
+        "allowPlusOne": false
       }
     ]
   },
@@ -614,13 +624,8 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g44-1",
-        "name": "Francisco Garcia",
-        "allowPlusOne": false
-      },
-      {
-        "id": "g44-2",
-        "name": "Valentina de Garcia",
-        "allowPlusOne": false
+        "name": "Hernan Payan",
+        "allowPlusOne": true
       }
     ]
   },
@@ -629,13 +634,38 @@ export const INVITE_GROUPS: InviteGroup[] = [
     "members": [
       {
         "id": "g45-1",
-        "name": "Nataly Alvares",
+        "name": "Francisco Garcia",
         "allowPlusOne": false
       },
       {
         "id": "g45-2",
+        "name": "Valentina Hernandez",
+        "allowPlusOne": false
+      }
+    ]
+  },
+  {
+    "id": "g46",
+    "members": [
+      {
+        "id": "g46-1",
+        "name": "Nataly Alvares",
+        "allowPlusOne": false
+      },
+      {
+        "id": "g46-2",
         "name": "Eduardo Lesmes",
         "allowPlusOne": false
+      }
+    ]
+  },
+  {
+    "id": "g47",
+    "members": [
+      {
+        "id": "g47-1",
+        "name": "Ivanna Isabel Bonomie",
+        "allowPlusOne": true
       }
     ]
   }

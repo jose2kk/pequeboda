@@ -31,7 +31,6 @@ export default function RSVPForm() {
   const [attendingIds, setAttendingIds] = useState<Set<string>>(new Set());
   const [companions, setCompanions] = useState<Record<string, string>>({});
   const [dieta, setDieta] = useState("");
-  const [cancion, setCancion] = useState("");
 
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState(false);
@@ -75,7 +74,6 @@ export default function RSVPForm() {
     setAttendingIds(new Set(g.members.map((m) => m.id))); // default: all coming
     setCompanions({});
     setDieta("");
-    setCancion("");
     setQuery("");
     setOpen(false);
     setSubmitError(false);
@@ -133,7 +131,6 @@ export default function RSVPForm() {
             .map((m) => m.name),
           companions: companionNames,
           dieta: dieta.trim(),
-          cancion: cancion.trim(),
         }),
       });
       if (!res.ok) throw new Error("request failed");
@@ -280,30 +277,17 @@ export default function RSVPForm() {
       </div>
 
       {anyAttending && (
-        <>
-          <div className="field">
-            <label htmlFor="dieta">Restricciones alimenticias</label>
-            <input
-              type="text"
-              id="dieta"
-              name="dieta"
-              placeholder="Vegetariano, alergias, etc. (opcional)"
-              value={dieta}
-              onChange={(e) => setDieta(e.target.value)}
-            />
-          </div>
-          <div className="field">
-            <label htmlFor="cancion">¿Qué canción no puede faltar?</label>
-            <input
-              type="text"
-              id="cancion"
-              name="cancion"
-              placeholder="Para nuestra playlist (opcional)"
-              value={cancion}
-              onChange={(e) => setCancion(e.target.value)}
-            />
-          </div>
-        </>
+        <div className="field">
+          <label htmlFor="dieta">Restricciones alimenticias</label>
+          <input
+            type="text"
+            id="dieta"
+            name="dieta"
+            placeholder="Vegetariano, alergias, etc. (opcional)"
+            value={dieta}
+            onChange={(e) => setDieta(e.target.value)}
+          />
+        </div>
       )}
 
       <div className="rsvp-submit">

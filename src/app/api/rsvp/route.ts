@@ -19,7 +19,6 @@ interface RSVPPayload {
   notAttending: string[];
   companions: string[];
   dieta: string;
-  cancion: string;
 }
 
 export async function POST(request: Request) {
@@ -33,7 +32,6 @@ export async function POST(request: Request) {
       notAttending,
       companions,
       dieta,
-      cancion,
     } = body;
 
     if (!respondedBy?.trim() || !Array.isArray(household) || !household.length) {
@@ -61,7 +59,6 @@ export async function POST(request: Request) {
       lines.push("", "No asisten:", list(notAttending));
     }
     if (dieta?.trim()) lines.push("", `Restricciones alimenticias: ${dieta.trim()}`);
-    if (cancion?.trim()) lines.push(`Canción para la playlist: ${cancion.trim()}`);
 
     const emailBody = [
       "Nueva confirmación RSVP — Boda Ana Isabel & José Andrés",

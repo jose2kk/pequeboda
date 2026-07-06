@@ -1,31 +1,62 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { INVITE_GROUPS, type InviteGroup } from "@/data/guests";
 
-type Asistencia = "" | "si" | "no";
+const normalize = (s: string) =>
+  s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+// Flat, pre-normalized index of every guest for the search box.
+const SEARCH_INDEX = INVITE_GROUPS.flatMap((group) =>
+  group.members.map((member) => ({
+    member,
+    group,
+    norm: normalize(member.name),
+  }))
+);
+
+const firstName = (full: string) => full.trim().split(/\s+/)[0] || "";
 
 export default function RSVPForm() {
-  const formRef = useRef<HTMLFormElement>(null);
+  const searchRef = useRef<HTMLDivElement>(null);
   const confirmRef = useRef<HTMLDivElement>(null);
 
-  const [nombre, setNombre] = useState("");
-  const [asistencia, setAsistencia] = useState<Asistencia>("");
-  const [acompanantes, setAcompanantes] = useState("1");
+  // Step 1 — find your name
+  const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+
+  // Step 2 — your household
+  const [group, setGroup] = useState<InviteGroup | null>(null);
+  const [searchedName, setSearchedName] = useState("");
+  const [attendingIds, setAttendingIds] = useState<Set<string>>(new Set());
+  const [companions, setCompanions] = useState<Record<string, string>>({});
   const [dieta, setDieta] = useState("");
   const [cancion, setCancion] = useState("");
 
-  const [errNombre, setErrNombre] = useState(false);
-  const [errAsist, setErrAsist] = useState(false);
   const [sending, setSending] = useState(false);
   const [submitError, setSubmitError] = useState(false);
-
   const [confirmed, setConfirmed] = useState<{
     attending: boolean;
     fname: string;
   } | null>(null);
   const [confirmIn, setConfirmIn] = useState(false);
 
-  const attending = asistencia === "si";
+  const results = useMemo(() => {
+    const q = normalize(query);
+    if (!q) return [];
+    return SEARCH_INDEX.filter((e) => e.norm.includes(q)).slice(0, 8);
+  }, [query]);
+
+  // Close the results dropdown on outside click.
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
 
   // Fade the confirmation in and scroll it into view once it mounts.
   useEffect(() => {
@@ -38,26 +69,54 @@ export default function RSVPForm() {
     }
   }, [confirmed]);
 
+  const pickMember = (g: InviteGroup, name: string) => {
+    setGroup(g);
+    setSearchedName(name);
+    setAttendingIds(new Set(g.members.map((m) => m.id))); // default: all coming
+    setCompanions({});
+    setDieta("");
+    setCancion("");
+    setQuery("");
+    setOpen(false);
+    setSubmitError(false);
+  };
+
+  const resetGroup = () => {
+    setGroup(null);
+    setSearchedName("");
+    setAttendingIds(new Set());
+    setCompanions({});
+  };
+
+  const toggleAttending = (id: string) => {
+    setAttendingIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+        setCompanions((c) => {
+          const copy = { ...c };
+          delete copy[id];
+          return copy;
+        });
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!group) return;
     setSubmitError(false);
 
-    const nameOk = nombre.trim().length > 0;
-    const asistOk = asistencia !== "";
-    setErrNombre(!nameOk);
-    setErrAsist(!asistOk);
-
-    if (!nameOk || !asistOk) {
-      requestAnimationFrame(() => {
-        const first = formRef.current?.querySelector(".field.error");
-        if (first) {
-          const top =
-            first.getBoundingClientRect().top + window.scrollY - 140;
-          window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
-        }
-      });
-      return;
-    }
+    const attendingMembers = group.members.filter((m) =>
+      attendingIds.has(m.id)
+    );
+    const companionNames = group.members
+      .filter((m) => m.allowPlusOne && attendingIds.has(m.id))
+      .map((m) => companions[m.id]?.trim())
+      .filter((v): v is string => Boolean(v));
 
     setSending(true);
     try {
@@ -65,17 +124,23 @@ export default function RSVPForm() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          nombre: nombre.trim(),
-          asistencia,
-          acompanantes: attending ? acompanantes : null,
-          dieta: attending ? dieta.trim() : "",
-          cancion: attending ? cancion.trim() : "",
+          groupId: group.id,
+          household: group.members.map((m) => m.name),
+          respondedBy: searchedName,
+          attending: attendingMembers.map((m) => m.name),
+          notAttending: group.members
+            .filter((m) => !attendingIds.has(m.id))
+            .map((m) => m.name),
+          companions: companionNames,
+          dieta: dieta.trim(),
+          cancion: cancion.trim(),
         }),
       });
       if (!res.ok) throw new Error("request failed");
-
-      const fname = nombre.trim().split(/\s+/)[0] || "";
-      setConfirmed({ attending, fname });
+      setConfirmed({
+        attending: attendingMembers.length > 0,
+        fname: firstName(searchedName),
+      });
     } catch {
       setSubmitError(true);
     } finally {
@@ -83,6 +148,7 @@ export default function RSVPForm() {
     }
   };
 
+  /* ── Confirmation ── */
   if (confirmed) {
     return (
       <div ref={confirmRef} className={`confirm${confirmIn ? " in" : ""}`}>
@@ -102,100 +168,143 @@ export default function RSVPForm() {
     );
   }
 
-  return (
-    <form ref={formRef} noValidate onSubmit={handleSubmit}>
-      <div className={`field${errNombre ? " error" : ""}`}>
-        <label htmlFor="nombre">Nombre y apellido</label>
+  /* ── Step 1: find your name ── */
+  if (!group) {
+    return (
+      <div className="field rsvp-search" ref={searchRef}>
+        <label htmlFor="guest-search">Busca tu nombre</label>
         <input
           type="text"
-          id="nombre"
-          name="nombre"
-          placeholder="Tu nombre completo"
-          autoComplete="name"
-          value={nombre}
+          id="guest-search"
+          autoComplete="off"
+          placeholder="Escribe tu nombre o apellido"
+          value={query}
           onChange={(e) => {
-            setNombre(e.target.value);
-            if (errNombre && e.target.value.trim()) setErrNombre(false);
+            setQuery(e.target.value);
+            setOpen(true);
           }}
+          onFocus={() => query.trim() && setOpen(true)}
         />
-        <div className="field__err">Por favor escribe tu nombre.</div>
+        {open && query.trim() && (
+          <div className="rsvp-search__results">
+            {results.length > 0 ? (
+              results.map(({ member, group: g }) => {
+                const others = g.members
+                  .filter((m) => m.id !== member.id)
+                  .map((m) => m.name);
+                return (
+                  <button
+                    key={member.id}
+                    type="button"
+                    className="rsvp-search__item"
+                    onClick={() => pickMember(g, member.name)}
+                  >
+                    {member.name}
+                    {others.length > 0 && <small>con {others.join(", ")}</small>}
+                  </button>
+                );
+              })
+            ) : (
+              <div className="rsvp-search__empty">
+                No encontramos ese nombre. Revisa la ortografía o escríbenos.
+              </div>
+            )}
+          </div>
+        )}
+        <p className="rsvp-search__hint">
+          Escribe tu nombre para encontrar tu invitación.
+        </p>
+      </div>
+    );
+  }
+
+  /* ── Step 2: confirm your household ── */
+  const anyAttending = group.members.some((m) => attendingIds.has(m.id));
+  const multi = group.members.length > 1;
+
+  return (
+    <form noValidate onSubmit={handleSubmit}>
+      <div className="rsvp-group__head">
+        <div>
+          <span className="field__legend">
+            {multi ? "Tu grupo" : "Tu invitación"}
+          </span>
+          <p className="rsvp-group__names">
+            {group.members.map((m) => m.name).join(" · ")}
+          </p>
+        </div>
+        <button
+          type="button"
+          className="rsvp-group__change"
+          onClick={resetGroup}
+        >
+          Cambiar
+        </button>
       </div>
 
-      <div className={`field${errAsist ? " error" : ""}`}>
-        <span className="field__legend">¿Nos acompañas?</span>
-        <div className="seg">
-          <label>
+      <div className="field">
+        <span className="field__legend">
+          {multi ? "¿Quiénes asistirán?" : "¿Nos acompañas?"}
+        </span>
+        <div className="guest-list">
+          {group.members.map((m) => {
+            const on = attendingIds.has(m.id);
+            return (
+              <div key={m.id} className="guest-item">
+                <button
+                  type="button"
+                  className="guest-toggle"
+                  aria-pressed={on}
+                  onClick={() => toggleAttending(m.id)}
+                >
+                  <span className="guest-toggle__name">{m.name}</span>
+                  <span className="guest-toggle__state">
+                    {on ? "Asistirá" : "No asiste"}
+                  </span>
+                </button>
+                {m.allowPlusOne && on && (
+                  <input
+                    type="text"
+                    className="guest-plusone"
+                    placeholder="Nombre de tu acompañante (opcional)"
+                    value={companions[m.id] ?? ""}
+                    onChange={(e) =>
+                      setCompanions((c) => ({ ...c, [m.id]: e.target.value }))
+                    }
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {anyAttending && (
+        <>
+          <div className="field">
+            <label htmlFor="dieta">Restricciones alimenticias</label>
             <input
-              type="radio"
-              name="asistencia"
-              value="si"
-              checked={asistencia === "si"}
-              onChange={() => {
-                setAsistencia("si");
-                setErrAsist(false);
-              }}
+              type="text"
+              id="dieta"
+              name="dieta"
+              placeholder="Vegetariano, alergias, etc. (opcional)"
+              value={dieta}
+              onChange={(e) => setDieta(e.target.value)}
             />
-            <span>Sí, ahí estaré</span>
-          </label>
-          <label>
+          </div>
+          <div className="field">
+            <label htmlFor="cancion">¿Qué canción no puede faltar?</label>
             <input
-              type="radio"
-              name="asistencia"
-              value="no"
-              checked={asistencia === "no"}
-              onChange={() => {
-                setAsistencia("no");
-                setErrAsist(false);
-              }}
+              type="text"
+              id="cancion"
+              name="cancion"
+              placeholder="Para nuestra playlist (opcional)"
+              value={cancion}
+              onChange={(e) => setCancion(e.target.value)}
             />
-            <span>No podré ir</span>
-          </label>
-        </div>
-        <div className="field__err">Por favor selecciona una opción.</div>
-      </div>
-
-      <div data-when-yes style={{ display: attending ? "" : "none" }}>
-        <div className="field">
-          <label htmlFor="acompanantes">
-            Número de invitados (incluyéndote)
-          </label>
-          <select
-            id="acompanantes"
-            name="acompanantes"
-            value={acompanantes}
-            onChange={(e) => setAcompanantes(e.target.value)}
-          >
-            <option value="1">1 persona</option>
-            <option value="2">2 personas</option>
-            <option value="3">3 personas</option>
-            <option value="4">4 personas</option>
-          </select>
-        </div>
-
-        <div className="field">
-          <label htmlFor="dieta">Restricciones alimenticias</label>
-          <input
-            type="text"
-            id="dieta"
-            name="dieta"
-            placeholder="Vegetariano, alergias, etc. (opcional)"
-            value={dieta}
-            onChange={(e) => setDieta(e.target.value)}
-          />
-        </div>
-
-        <div className="field">
-          <label htmlFor="cancion">¿Qué canción no puede faltar?</label>
-          <input
-            type="text"
-            id="cancion"
-            name="cancion"
-            placeholder="Para nuestra playlist (opcional)"
-            value={cancion}
-            onChange={(e) => setCancion(e.target.value)}
-          />
-        </div>
-      </div>
+          </div>
+        </>
+      )}
 
       <div className="rsvp-submit">
         <button type="submit" className="btn" disabled={sending}>

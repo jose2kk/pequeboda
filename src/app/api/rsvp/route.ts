@@ -12,9 +12,12 @@ const PLANNER_EMAIL = process.env.PLANNER_EMAIL || "planner@example.com";
 const FROM_EMAIL = process.env.FROM_EMAIL || "boda@example.com";
 
 interface RSVPPayload {
-  nombre: string;
-  asistencia: "si" | "no";
-  acompanantes: string | null;
+  groupId: string;
+  household: string[];
+  respondedBy: string;
+  attending: string[];
+  notAttending: string[];
+  companions: string[];
   dieta: string;
   cancion: string;
 }
@@ -22,33 +25,43 @@ interface RSVPPayload {
 export async function POST(request: Request) {
   try {
     const body: RSVPPayload = await request.json();
-    const { nombre, asistencia, acompanantes, dieta, cancion } = body;
+    const {
+      groupId,
+      household,
+      respondedBy,
+      attending,
+      notAttending,
+      companions,
+      dieta,
+      cancion,
+    } = body;
 
-    if (!nombre?.trim() || (asistencia !== "si" && asistencia !== "no")) {
+    if (!respondedBy?.trim() || !Array.isArray(household) || !household.length) {
       return NextResponse.json(
         { error: "Faltan campos obligatorios" },
         { status: 400 }
       );
     }
 
-    const attending = asistencia === "si";
-
-    const transporter = nodemailer.createTransport({
-      host: SMTP_HOST,
-      port: SMTP_PORT,
-      secure: SMTP_PORT === 465,
-      auth: { user: SMTP_USER, pass: SMTP_PASS },
-    });
+    const attendingCount = (attending?.length || 0) + (companions?.length || 0);
+    const list = (arr: string[]) =>
+      arr?.length ? arr.map((n) => `  - ${n}`).join("\n") : "  (ninguno)";
 
     const lines = [
-      `Nombre: ${nombre.trim()}`,
-      `Asistencia: ${attending ? "Sí, asistirá" : "No podrá asistir"}`,
+      `Respondió: ${respondedBy.trim()}`,
+      `Grupo (${groupId}): ${household.join(", ")}`,
+      "",
+      `Asisten (${attendingCount}):`,
+      list(attending),
     ];
-    if (attending) {
-      lines.push(`Número de invitados (incluyéndose): ${acompanantes || "1"}`);
-      lines.push(`Restricciones alimenticias: ${dieta?.trim() || "—"}`);
-      lines.push(`Canción para la playlist: ${cancion?.trim() || "—"}`);
+    if (companions?.length) {
+      lines.push("", "Acompañantes (+1):", list(companions));
     }
+    if (notAttending?.length) {
+      lines.push("", "No asisten:", list(notAttending));
+    }
+    if (dieta?.trim()) lines.push("", `Restricciones alimenticias: ${dieta.trim()}`);
+    if (cancion?.trim()) lines.push(`Canción para la playlist: ${cancion.trim()}`);
 
     const emailBody = [
       "Nueva confirmación RSVP — Boda Ana Isabel & José Andrés",
@@ -59,10 +72,17 @@ export async function POST(request: Request) {
       "Enviado desde el sitio web de la boda (#PequeBoda)",
     ].join("\n");
 
+    const transporter = nodemailer.createTransport({
+      host: SMTP_HOST,
+      port: SMTP_PORT,
+      secure: SMTP_PORT === 465,
+      auth: { user: SMTP_USER, pass: SMTP_PASS },
+    });
+
     await transporter.sendMail({
       from: `"Boda Ana & José" <${FROM_EMAIL}>`,
       to: PLANNER_EMAIL,
-      subject: `RSVP: ${nombre.trim()} — ${attending ? "Asiste" : "No asiste"}`,
+      subject: `RSVP: ${respondedBy.trim()} — ${attendingCount} asisten`,
       text: emailBody,
     });
 

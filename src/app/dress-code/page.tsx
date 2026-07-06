@@ -12,14 +12,22 @@ export const metadata: Metadata = {
 export default function DressCodePage() {
   return (
     <>
+      {/* Warm up Pinterest's connections before pinit.js runs — cuts DNS/TLS
+          setup latency for the embedded board, noticeably on mobile Safari. */}
+      <link rel="preconnect" href="https://assets.pinterest.com" />
+      <link rel="preconnect" href="https://widgets.pinterest.com" />
+      <link rel="preconnect" href="https://i.pinimg.com" />
+      <link rel="dns-prefetch" href="https://assets.pinterest.com" />
+      <link rel="dns-prefetch" href="https://widgets.pinterest.com" />
+      <link rel="dns-prefetch" href="https://i.pinimg.com" />
+
       <header className="page-hero">
         <span className="eyebrow">El Código de Vestimenta</span>
         <h1 className="page-hero__title">
           Dress <em>Code</em>
         </h1>
         <p className="page-hero__lead">
-          Queremos que luzcas espectacular. Aquí algunas guías para
-          acompañarnos con elegancia bajo el sol y la brisa de Cartagena.
+          Aquí algunas guías para acompañarnos.
         </p>
       </header>
 
@@ -37,10 +45,7 @@ export default function DressCodePage() {
               <div className="guide__for">Para Ellas</div>
               <h2 className="guide__title">Vestido largo o de cóctel</h2>
               <ul className="guide__list">
-                <li>Vestido largo, midi o de cóctel</li>
-                <li>Telas fluidas y frescas</li>
-                <li>Tacón cómodo — habrá adoquines</li>
-                <li>Tonos tierra, joya y pastel</li>
+                <li>Vestido largo</li>
               </ul>
             </article>
 
@@ -48,10 +53,7 @@ export default function DressCodePage() {
               <div className="guide__for">Para Ellos</div>
               <h2 className="guide__title">Traje completo</h2>
               <ul className="guide__list">
-                <li>Traje en tono claro u oscuro</li>
-                <li>Camisa y corbata o pajarita</li>
-                <li>Lino y telas ligeras, bienvenidos</li>
-                <li>Zapato formal</li>
+                <li>Traje formal o tropical</li>
               </ul>
             </article>
           </div>
@@ -62,11 +64,6 @@ export default function DressCodePage() {
         <div className="wrap inspo reveal">
           <span className="eyebrow">Inspiración</span>
           <h2 className="inspo__title">Nuestro Tablero de Ideas</h2>
-          <p className="inspo__note">
-            Reunimos algunas referencias en Pinterest para inspirar tu look:
-            siluetas, telas y tonos que nos encantan para esa noche en
-            Cartagena.
-          </p>
           <PinterestBoard boardUrl={PINTEREST_BOARD_URL} />
           <div className="inspo__cta">
             <a
@@ -88,7 +85,7 @@ export default function DressCodePage() {
             Por favor, reserva el <em>blanco</em> para la novia
           </h2>
           <p className="avoid__note">
-            Te pedimos con cariño evitar el blanco, marfil y beige claro.
+            Evitar el blanco, marfil y beige claro.
           </p>
         </div>
       </section>

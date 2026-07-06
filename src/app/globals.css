@@ -508,8 +508,25 @@ h1, h2, h3 { font-family: var(--display); font-weight: 500; margin: 0; }
 .inspo { text-align: center; }
 .inspo__title { font-family: var(--display); font-weight: 500; font-style: italic; font-size: clamp(34px, 5vw, 60px); margin: 10px 0 14px; }
 .inspo__note { color: var(--ink-soft); max-width: 48ch; margin: 0 auto clamp(34px, 5vh, 52px); }
-.inspo__board { display: flex; justify-content: center; min-height: 60px; }
+.inspo__board { position: relative; display: flex; justify-content: center; min-height: 340px; }
+.inspo__board.is-loaded { min-height: 0; }
 .inspo__board a { max-width: 100%; }
+.inspo__board-skeleton {
+  width: min(100%, 560px);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ivory-2);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-faint);
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  animation: skeleton-pulse 1.6s var(--ease) infinite;
+}
+@keyframes skeleton-pulse { 0%, 100% { opacity: .55; } 50% { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .inspo__board-skeleton { animation: none; } }
 .inspo__cta { margin-top: clamp(30px, 5vh, 48px); }
 
 .avoid { text-align: center; }

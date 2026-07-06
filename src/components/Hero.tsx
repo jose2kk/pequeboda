@@ -1,15 +1,17 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
+import type { CSSProperties } from "react";
 import { useEffect, useState } from "react";
 
-// Originals are 960×1280 (3:4); crops are applied in CSS per nth-child.
+// Originals are 960×1280 (3:4) shown in a 5:6 frame; each photo carries its
+// own user-approved crop (--z zoom, --ox/--oy pan) so the framing stays bound
+// to the image regardless of order.
 const PHOTOS = [
-  { src: "/images/hero-01.jpg", alt: "Ana Isabel y José Andrés" },
-  { src: "/images/hero-02.jpg", alt: "Ana Isabel mostrando el anillo" },
-  { src: "/images/hero-03.jpg", alt: "Un beso en la mejilla" },
-  { src: "/images/hero-04.jpg", alt: "Ana Isabel y José Andrés sonriendo" },
-  { src: "/images/hero-05.jpg", alt: "Un beso" },
+  { src: "/images/hero-01.jpg", alt: "Ana Isabel y José Andrés", z: 1.6, ox: 0.74, oy: 0.4 },
+  { src: "/images/hero-02.jpg", alt: "Ana Isabel mostrando el anillo", z: 1.4, ox: 0.46, oy: 0.27 },
+  { src: "/images/hero-05.jpg", alt: "Un beso", z: 1.4, ox: 0.52, oy: 0.37 },
+  { src: "/images/hero-04.jpg", alt: "Ana Isabel y José Andrés sonriendo", z: 1.7, ox: 0.46, oy: 0.51 },
 ];
 
 const INTERVAL = 2000;
@@ -41,6 +43,9 @@ export default function Hero() {
               alt={p.alt}
               className={i === active ? "is-on" : ""}
               loading={i === 0 ? "eager" : "lazy"}
+              style={
+                { "--z": p.z, "--ox": p.ox, "--oy": p.oy } as CSSProperties
+              }
             />
           ))}
         </figure>
